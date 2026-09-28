@@ -1,0 +1,27 @@
+{
+  "name": "bale-store-html",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "css": "tailwindcss -i src/input.css -o css/styles.css --minify",
+    "css:watch": "tailwindcss -i src/input.css -o css/styles.css --watch",
+    "convex": "convex dev",
+    "serve": "serve .",
+    "test": "vitest run",
+    "setup": "npx convex dev --once && node tools/configure.mjs",
+    "deploy": "npx convex deploy"
+  },
+  "devDependencies": {
+    "@edge-runtime/vm": "^5.0.0",
+    "@tailwindcss/cli": "^4.1.0",
+    "convex": "1.46.0",
+    "convex-test": "^0.0.60",
+    "serve": "^14.2.0",
+    "tailwindcss": "^4.1.0",
+    "typescript": "^5.6.0",
+    "vitest": "^5.0.2"
+  },
+  "dependencies": {
+    "@types/node": "^22.20.4"
+  }
+}

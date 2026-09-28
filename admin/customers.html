@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customers | Shop admin</title>
+  <meta name="description" content="Admin">
+  <meta name="theme-color" content="#141414">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>
+    // Make sure admin pages always load with a trailing slash so links resolve (e.g. /admin → /admin/)
+    if (/\/admin$/.test(location.pathname)) location.replace(location.pathname + "/" + location.search);
+  </script>
+</head>
+<body class="min-h-screen bg-wrap">
+  <script>
+    // Collect load errors so a help box can say exactly what failed
+    window.__errs = [];
+    addEventListener("error", function (e) {
+      var t = e.target;
+      window.__errs.push(t && (t.src || t.href) ? "Couldn't load " + (t.src || t.href) : (e.message || "Script error"));
+    }, true);
+  </script>
+  <div id="admin-header"></div>
+  <main class="mx-auto max-w-7xl px-4 py-8">
+    <div id="customers-root"><p class="text-ink/60">Loading…</p></div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/convex@1.46.0/dist/browser.bundle.js"></script>
+  <script type="module" src="../js/admin/customers.js"></script>
+  <script>
+    // If the page's code can't run, show what's wrong instead of a blank "Loading…" page
+    (function () {
+      function help(title, lines) {
+        var box = document.createElement("div");
+        box.setAttribute("style", "position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(15,27,45,.85);font-family:system-ui,sans-serif");
+        box.innerHTML = '<div style="max-width:560px;width:100%;background:#fff;border-radius:14px;padding:24px;color:#0f1b2d;line-height:1.5">' +
+          '<p style="margin:0 0 4px;color:#f26b1d;font-weight:800">Site not running correctly</p>' +
+          '<h2 style="margin:0 0 12px;font-size:20px">' + title + '</h2><ol style="margin:0;padding-left:20px">' +
+          lines.map(function (l) { return '<li style="margin:6px 0">' + l + '</li>'; }).join("") + '</ol>' +
+          (window.__errs && window.__errs.length ? '<p style="margin:14px 0 4px;font-weight:700">Details</p><pre style="white-space:pre-wrap;background:#f5f5f2;padding:10px;border-radius:8px;font-size:12px;margin:0">' +
+            window.__errs.slice(0, 6).join("\n").replace(/</g, "&lt;") + '</pre>' : "") + '</div>';
+        document.body.appendChild(box);
+      }
+      if (location.protocol === "file:") {
+        return help("You opened the file directly", [
+          "Browsers block the site's code when a page is opened by double-clicking it.",
+          "Open a terminal <b>inside the bale-store-html folder</b> and run <code>npx serve .</code>",
+          "Then open <b>http://localhost:3000</b> (admin: <b>http://localhost:3000/admin/</b>).",
+          "Or in VS Code: open the bale-store-html folder and click <b>Go Live</b>."
+        ]);
+      }
+      if (!/\/admin(\/|$)/.test(location.pathname)) {
+        return help("The server was started inside the admin folder", [
+          "In the terminal press <b>Ctrl + C</b> to stop the server.",
+          "Type <code>cd ..</code> and press Enter to go up to the <b>bale-store-html</b> folder.",
+          "Type <code>npx serve .</code> and press Enter.",
+          "Open <b>http://localhost:3000/admin/</b>"
+        ]);
+      }
+      setTimeout(function () {
+        if (window.__appReady) return;
+        help("The page's code didn't load", [
+          "Check you're connected to the internet (Convex and the charts load from the internet).",
+          "Make sure the server was started <b>inside the bale-store-html folder</b> (the one with index.html, css and js in it).",
+          "Stop the server (Ctrl + C), run <code>npx serve .</code> again, then hard-refresh the page (Ctrl + Shift + R).",
+          "If it still shows this, send a screenshot of this box."
+        ]);
+      }, 7000);
+    })();
+  </script>
+</body>
+</html>

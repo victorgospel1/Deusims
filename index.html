@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Okrika Bales Depot — Okrika bales wholesale in Lagos</title>
+  <meta name="description" content="Quality graded okrika bales from the UK, USA, Canada and Korea. Pay online, by transfer or at the warehouse. Pickup in Lagos or delivery nationwide.">
+  <meta name="theme-color" content="#141414">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="min-h-screen">
+  <script>
+    // Collect load errors so a help box can say exactly what failed
+    window.__errs = [];
+    addEventListener("error", function (e) {
+      var t = e.target;
+      window.__errs.push(t && (t.src || t.href) ? "Couldn't load " + (t.src || t.href) : (e.message || "Script error"));
+    }, true);
+  </script>
+  <div id="site-header"></div>
+  <main>
+    <!-- Hero: slides edited in Admin → Website -->
+    <section class="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:pt-8">
+      <div id="hero" class="slideshow relative" tabindex="0" aria-roledescription="carousel" aria-label="Highlights"></div>
+    </section>
+
+    <!-- Moving category ticker -->
+    <section class="mt-8 overflow-hidden bg-ink py-3 text-white lg:mt-10" aria-hidden="true">
+      <div id="marquee" class="flex w-max animate-marquee gap-8 whitespace-nowrap display text-lg font-bold sm:text-xl"></div>
+    </section>
+
+    <!-- Categories -->
+    <section class="mx-auto max-w-7xl px-4 pt-14 sm:px-6">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div><p class="kicker">Browse</p><h2 class="section-title mt-2">Shop by category</h2></div>
+        <a href="shop.html" class="link-more">All categories</a>
+      </div>
+      <div id="bento" class="mt-6 grid auto-rows-[130px] grid-cols-2 gap-3 sm:auto-rows-[160px] lg:grid-cols-4"></div>
+    </section>
+
+    <!-- New arrivals -->
+    <section class="mx-auto max-w-7xl px-4 pt-14 sm:px-6">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div><p class="kicker">Just landed</p><h2 class="section-title mt-2">New in the warehouse</h2></div>
+        <div id="tabs" class="flex flex-wrap gap-2" role="tablist" aria-label="Filter by grade"></div>
+      </div>
+      <div id="arrivals" class="mt-6 grid grid-cols-2 gap-x-3 gap-y-7 sm:grid-cols-3 sm:gap-x-4 md:grid-cols-4 lg:grid-cols-6"></div>
+      <div class="mt-8 text-center"><a href="shop.html" class="btn-dark">View all bales</a></div>
+    </section>
+
+    <!-- More product rows (built from live stock) -->
+    <div id="product-rows"></div>
+
+    <!-- Deals -->
+    <section id="deals" class="mx-auto hidden max-w-7xl px-4 pt-14 sm:px-6">
+      <div class="overflow-hidden rounded-[1.75rem] bg-ink p-5 text-white sm:p-8">
+        <div class="flex flex-wrap items-end justify-between gap-6">
+          <div><p class="kicker">Limited time</p><h2 id="deals-title" class="section-title mt-2 text-white"></h2></div>
+          <div id="deals-timer" class="flex gap-2"></div>
+        </div>
+        <div id="deals-list" class="no-scrollbar mt-6 flex snap-x gap-4 overflow-x-auto pb-2"></div>
+      </div>
+    </section>
+
+    <!-- How it works, with photo -->
+    <section class="mx-auto grid max-w-7xl items-center gap-10 px-4 pt-20 sm:px-6 lg:grid-cols-2 lg:gap-14">
+      <div class="reveal relative">
+        <img data-photo="warehouse" alt="Inside the warehouse" class="aspect-[4/3] w-full rounded-[1.75rem] object-cover">
+        <div class="absolute -bottom-6 left-6 right-6 rounded-2xl bg-white p-5 shadow-xl sm:left-auto sm:right-6 sm:w-72">
+          <p class="flex items-center gap-2 text-sm font-semibold"><span class="grid h-8 w-8 place-items-center rounded-full bg-go/10 text-go" data-i="video"></span> Opening videos</p>
+          <p class="mt-2 text-sm text-ink/60">Ask on WhatsApp and we'll film the bale being opened before you pay.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="kicker">How it works</p>
+        <h2 class="section-title mt-2">Buying a bale should never feel like a gamble</h2>
+        <ol class="mt-8 space-y-6">
+          <li class="flex gap-5"><span class="display text-3xl font-extrabold text-brand">01</span><div><p class="font-semibold">Pick your bale</p><p class="mt-1 text-ink/60">Every bale shows its grade, weight, origin and photos. Not sure? Ask for an opening video.</p></div></li>
+          <li class="flex gap-5"><span class="display text-3xl font-extrabold text-brand">02</span><div><p class="font-semibold">Pay securely</p><p class="mt-1 text-ink/60">Bank transfer or card through Paystack, confirmed automatically. Or pay cash or POS at pickup.</p></div></li>
+          <li class="flex gap-5"><span class="display text-3xl font-extrabold text-brand">03</span><div><p class="font-semibold">Collect or receive</p><p class="mt-1 text-ink/60">Free pickup at our Lagos warehouse, or delivery to any state. Track it with your order code.</p></div></li>
+        </ol>
+        <div class="mt-10 flex flex-wrap gap-3"><a href="shop.html" class="btn">Start shopping</a><a data-wa target="_blank" rel="noopener" class="btn-ghost">Chat on WhatsApp</a></div>
+      </div>
+    </section>
+
+    <!-- Grades -->
+    <section class="mx-auto max-w-7xl px-4 pt-20 sm:px-6">
+      <div class="max-w-2xl"><p class="kicker">Grade guide</p><h2 class="section-title mt-2">Know exactly what you're paying for</h2></div>
+      <div id="grades" class="mt-8 grid gap-4 md:grid-cols-3"></div>
+    </section>
+
+    <!-- Trust -->
+    <section class="mx-auto max-w-7xl px-4 pt-20 sm:px-6">
+      <div id="trust" class="grid grid-cols-2 gap-6 border-y border-strap py-10 lg:grid-cols-4"></div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="https://cdn.jsdelivr.net/npm/convex@1.46.0/dist/browser.bundle.js"></script>
+  <script type="module" src="js/pages/home.js"></script>
+  <script>
+    // If the page's code can't run, show what's wrong instead of a blank "Loading…" page
+    (function () {
+      function help(title, lines) {
+        var box = document.createElement("div");
+        box.setAttribute("style", "position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(15,27,45,.85);font-family:system-ui,sans-serif");
+        box.innerHTML = '<div style="max-width:560px;width:100%;background:#fff;border-radius:14px;padding:24px;color:#0f1b2d;line-height:1.5">' +
+          '<p style="margin:0 0 4px;color:#f26b1d;font-weight:800">Site not running correctly</p>' +
+          '<h2 style="margin:0 0 12px;font-size:20px">' + title + '</h2><ol style="margin:0;padding-left:20px">' +
+          lines.map(function (l) { return '<li style="margin:6px 0">' + l + '</li>'; }).join("") + '</ol>' +
+          (window.__errs && window.__errs.length ? '<p style="margin:14px 0 4px;font-weight:700">Details</p><pre style="white-space:pre-wrap;background:#f5f5f2;padding:10px;border-radius:8px;font-size:12px;margin:0">' +
+            window.__errs.slice(0, 6).join("\n").replace(/</g, "&lt;") + '</pre>' : "") + '</div>';
+        document.body.appendChild(box);
+      }
+      if (location.protocol === "file:") {
+        return help("You opened the file directly", [
+          "Browsers block the site's code when a page is opened by double-clicking it.",
+          "Open a terminal <b>inside the bale-store-html folder</b> and run <code>npx serve .</code>",
+          "Then open <b>http://localhost:3000</b> (admin: <b>http://localhost:3000/admin/</b>).",
+          "Or in VS Code: open the bale-store-html folder and click <b>Go Live</b>."
+        ]);
+      }
+      setTimeout(function () {
+        if (window.__appReady) return;
+        help("The page's code didn't load", [
+          "Check you're connected to the internet (Convex and the charts load from the internet).",
+          "Make sure the server was started <b>inside the bale-store-html folder</b> (the one with index.html, css and js in it).",
+          "Stop the server (Ctrl + C), run <code>npx serve .</code> again, then hard-refresh the page (Ctrl + Shift + R).",
+          "If it still shows this, send a screenshot of this box."
+        ]);
+      }, 7000);
+    })();
+  </script>
+</body>
+</html>

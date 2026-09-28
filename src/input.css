@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@source "../*.html";
+@source "../admin/*.html";
+@source "../js/**/*.js";
+
+/* ─── Design tokens: orange + deep navy ─── */
+@theme {
+  --color-brand: #ff5a1f;       /* vivid orange accent */
+  --color-brand-dark: #e2460f;
+  --color-brand-soft: #ffeee6;
+  --color-ink: #141414;         /* near-black */
+  --color-ink-soft: #3a3a3a;
+  --color-wrap: #faf7f2;        /* warm cream page background */
+  --color-sack: #f1ece4;        /* image placeholders, soft fills */
+  --color-strap: #e6e0d6;       /* hairline borders */
+  --color-marker: #ff5a1f;      /* legacy alias of brand */
+  --color-deal: #ff5a1f;
+  --color-go: #15803d;
+  --color-stop: #dc2626;
+
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+
+  --shadow-card: 0 1px 2px rgb(15 27 45 / 0.06), 0 8px 24px -12px rgb(15 27 45 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(15 27 45 / 0.06), 0 22px 40px -18px rgb(15 27 45 / 0.35);
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-bump: bump 0.45s ease;
+  --animate-toast: toast-in 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes fade-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  @keyframes bump { 0%,100% { transform: scale(1); } 40% { transform: scale(1.35); } }
+  --animate-marquee: marquee 38s linear infinite;
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes toast-in { from { opacity: 0; transform: translateY(16px) scale(.97); } to { opacity: 1; transform: none; } }
+}
+
+html { background: var(--color-wrap); color: var(--color-ink); scroll-behavior: smooth; }
+body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+:focus-visible { outline: 3px solid var(--color-brand); outline-offset: 2px; border-radius: 6px; }
+img { user-select: none; }
+
+@layer components {
+/* Order codes and big numbers */
+.stamp { font-weight: 800; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; }
+.condensed { letter-spacing: -0.03em; }
+
+/* ─── Buttons & fields ─── */
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 font-semibold text-white transition duration-200 hover:bg-brand-dark active:scale-[.98] disabled:pointer-events-none disabled:opacity-50;
+}
+.btn-dark {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3 font-semibold text-white transition duration-200 hover:bg-ink-soft active:scale-[.98];
+}
+.btn-marker { @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 font-semibold text-white transition hover:bg-brand-dark disabled:opacity-50; }
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink/15 bg-white px-6 py-3 font-semibold text-ink transition duration-200 hover:border-ink;
+}
+.btn-light {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-white/15 px-6 py-3 font-semibold text-white ring-1 ring-white/40 backdrop-blur transition duration-200 hover:bg-white hover:text-ink;
+}
+.field {
+  @apply w-full rounded-xl border border-strap bg-white px-4 py-3 text-ink transition placeholder:text-ink/35 focus:border-ink focus:ring-4 focus:ring-ink/5 focus:outline-none;
+}
+.chip { @apply inline-flex items-center gap-1.5 rounded-full border border-strap bg-white px-4 py-2 text-sm font-medium transition hover:border-ink; }
+.chip-on { @apply inline-flex items-center gap-1.5 rounded-full border border-ink bg-ink px-4 py-2 text-sm font-medium text-white; }
+.card { @apply rounded-2xl border border-strap/70 bg-white; }
+.panel { @apply overflow-hidden rounded-2xl border border-strap/70 bg-white; }
+.panel-head { @apply flex items-center justify-between gap-3 px-5 py-4; }
+.price-old { @apply text-sm text-ink/40 line-through; }
+.badge-off { @apply rounded-full bg-brand px-2 py-0.5 text-xs font-bold text-white; }
+.skeleton { @apply animate-pulse rounded-2xl bg-sack; }
+.display { font-family: var(--font-display); letter-spacing: -0.03em; }
+.section-title { @apply text-2xl font-extrabold tracking-tight sm:text-3xl; font-family: var(--font-display); letter-spacing: -0.03em; }
+.link-more { @apply inline-flex items-center gap-1 text-sm font-semibold text-ink underline decoration-ink/25 underline-offset-4 transition hover:decoration-brand; }
+.kicker { @apply text-xs font-semibold uppercase tracking-[0.18em] text-brand; }
+
+/* ─── Navbar ─── */
+.nav-link { @apply relative py-2 font-semibold text-ink/80 transition hover:text-ink; }
+.nav-link::after {
+  content: ""; @apply absolute inset-x-0 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-brand transition-transform duration-300;
+}
+.nav-link:hover::after, .nav-link.active::after { @apply scale-x-100; }
+.nav-link.active { @apply text-ink; }
+#site-nav.scrolled { @apply shadow-card; }
+#site-nav.scrolled .nav-inner { @apply py-2.5; }
+
+/* ─── Hero slideshow ─── */
+.slide { @apply absolute inset-0 opacity-0 transition-opacity duration-1000; }
+.slide.active { @apply z-10 opacity-100; }
+.slide:not(.active) { pointer-events: none; }
+.slide.stack { position: relative; inset: auto; grid-area: 1 / 1; }
+.slide img { transform: scale(1.12); transition: transform 7s ease-out; }
+.slide.active img { transform: scale(1); }
+.slide .slide-copy > * { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.slide.active .slide-copy > * { opacity: 1; transform: none; }
+.slide.active .slide-copy > *:nth-child(2) { transition-delay: .12s; }
+.slide.active .slide-copy > *:nth-child(3) { transition-delay: .24s; }
+.slide.active .slide-copy > *:nth-child(4) { transition-delay: .36s; }
+.dot-bar { @apply relative h-1.5 w-10 overflow-hidden rounded-full bg-white/30; }
+.dot-bar span { @apply absolute inset-y-0 left-0 w-0 rounded-full bg-brand; }
+.dot-bar.active span { animation: dot-fill var(--slide-ms, 6000ms) linear forwards; }
+.slideshow.paused .dot-bar.active span { animation-play-state: paused; }
+@keyframes dot-fill { to { width: 100%; } }
+
+/* ─── Cards ─── */
+.lift { @apply transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-20px_rgb(20_20_20/0.35)]; }
+.zoom-img img { @apply transition-transform duration-700; }
+.zoom-img:hover img { @apply scale-105; }
+
+/* ─── Scroll reveal ─── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ─── Drawer ─── */
+.drawer { @apply fixed inset-y-0 right-0 z-50 w-[86%] max-w-sm translate-x-full bg-white shadow-lift transition-transform duration-300; }
+.drawer.open { @apply translate-x-0; }
+.drawer-left { @apply fixed inset-y-0 left-0 z-50 w-[86%] max-w-sm -translate-x-full overflow-y-auto bg-white shadow-lift transition-transform duration-300; }
+.drawer-left.open { @apply translate-x-0; }
+.scrim { @apply pointer-events-none fixed inset-0 z-40 bg-ink/50 opacity-0 backdrop-blur-sm transition-opacity duration-300; }
+.scrim.open { @apply pointer-events-auto opacity-100; }
+
+.modal { @apply fixed inset-0 z-[55] hidden items-end justify-center bg-ink/60 p-0 backdrop-blur-sm sm:items-center sm:p-6; }
+.modal.open { @apply flex; }
+.modal-panel { @apply max-h-[92vh] w-full max-w-4xl animate-fade-up overflow-y-auto rounded-t-2xl bg-white sm:rounded-2xl; }
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal, .slide .slide-copy > * { opacity: 1 !important; transform: none !important; }
+}

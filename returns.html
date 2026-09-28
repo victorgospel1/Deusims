@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Refund policy | Okrika Bales Depot</title>
+  <meta name="description" content="All sales are final. Our no-refund policy and how to buy with confidence.">
+  <meta name="theme-color" content="#141414">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="min-h-screen">
+  <script>
+    // Collect load errors so a help box can say exactly what failed
+    window.__errs = [];
+    addEventListener("error", function (e) {
+      var t = e.target;
+      window.__errs.push(t && (t.src || t.href) ? "Couldn't load " + (t.src || t.href) : (e.message || "Script error"));
+    }, true);
+  </script>
+  <div id="site-header"></div>
+  <main>
+    <div class="mx-auto max-w-7xl px-4 pt-6 sm:px-6">
+      <p class="text-sm text-ink/50"><a href="index.html" class="hover:text-ink">Home</a> <span class="mx-1">/</span> <span class="text-ink">Refund policy</span></p>
+      <div class="mt-4 border-b border-strap pb-6"><h1 class="section-title !text-3xl sm:!text-4xl">Refund policy</h1><p class="mt-2 max-w-2xl text-ink/55">All sales are final. Here's how to buy with confidence.</p></div>
+    </div>
+    <!-- ⚠️ Review with your dad before going live -->
+    <div class="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+      <div class="rounded-2xl bg-ink p-6 text-white sm:p-8"><p class="display text-2xl font-bold">All sales are final</p>
+        <p class="mt-2 text-white/75">We do not offer refunds on any bale once it has been paid for. Please make sure it's the right bale before you pay.</p></div>
+      <div class="mt-10 space-y-8 text-ink/70">
+        <div><h2 class="display text-xl font-bold text-ink">Why no refunds?</h2><p class="mt-3 leading-relaxed">Bales are sold sealed, graded and priced by weight. Once a bale leaves our warehouse we can't resell it as a sealed bale, so every sale is final.</p></div>
+        <div><h2 class="display text-xl font-bold text-ink">Check before you pay</h2><ul class="mt-3 list-disc space-y-2 pl-5"><li>Read the grade, weight, origin and piece count on the bale's page.</li><li>Ask us on WhatsApp for an <strong>opening video</strong> of the exact bale.</li><li>Visit the warehouse to see stock in person.</li></ul></div>
+        <div><h2 class="display text-xl font-bold text-ink">If we send the wrong bale</h2><p class="mt-3 leading-relaxed">If you receive a different category or grade from what you ordered, message us on WhatsApp within 24 hours with your order code and an opening video. We'll swap it for the bale you paid for. This is an exchange, not a refund.</p></div>
+        <div><h2 class="display text-xl font-bold text-ink">Failed payments</h2><p class="mt-3 leading-relaxed">If your bank debits you but the payment fails, that money was never received by us. Paystack or your bank reverses it automatically, usually within 24 hours.</p></div>
+        <p><a data-wa target="_blank" rel="noopener" class="btn">Ask for an opening video</a></p>
+      </div>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="https://cdn.jsdelivr.net/npm/convex@1.46.0/dist/browser.bundle.js"></script>
+  <script type="module" src="js/pages/static.js"></script>
+  <script>
+    // If the page's code can't run, show what's wrong instead of a blank "Loading…" page
+    (function () {
+      function help(title, lines) {
+        var box = document.createElement("div");
+        box.setAttribute("style", "position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(15,27,45,.85);font-family:system-ui,sans-serif");
+        box.innerHTML = '<div style="max-width:560px;width:100%;background:#fff;border-radius:14px;padding:24px;color:#0f1b2d;line-height:1.5">' +
+          '<p style="margin:0 0 4px;color:#f26b1d;font-weight:800">Site not running correctly</p>' +
+          '<h2 style="margin:0 0 12px;font-size:20px">' + title + '</h2><ol style="margin:0;padding-left:20px">' +
+          lines.map(function (l) { return '<li style="margin:6px 0">' + l + '</li>'; }).join("") + '</ol>' +
+          (window.__errs && window.__errs.length ? '<p style="margin:14px 0 4px;font-weight:700">Details</p><pre style="white-space:pre-wrap;background:#f5f5f2;padding:10px;border-radius:8px;font-size:12px;margin:0">' +
+            window.__errs.slice(0, 6).join("\n").replace(/</g, "&lt;") + '</pre>' : "") + '</div>';
+        document.body.appendChild(box);
+      }
+      if (location.protocol === "file:") {
+        return help("You opened the file directly", [
+          "Browsers block the site's code when a page is opened by double-clicking it.",
+          "Open a terminal <b>inside the bale-store-html folder</b> and run <code>npx serve .</code>",
+          "Then open <b>http://localhost:3000</b> (admin: <b>http://localhost:3000/admin/</b>).",
+          "Or in VS Code: open the bale-store-html folder and click <b>Go Live</b>."
+        ]);
+      }
+      setTimeout(function () {
+        if (window.__appReady) return;
+        help("The page's code didn't load", [
+          "Check you're connected to the internet (Convex and the charts load from the internet).",
+          "Make sure the server was started <b>inside the bale-store-html folder</b> (the one with index.html, css and js in it).",
+          "Stop the server (Ctrl + C), run <code>npx serve .</code> again, then hard-refresh the page (Ctrl + Shift + R).",
+          "If it still shows this, send a screenshot of this box."
+        ]);
+      }, 7000);
+    })();
+  </script>
+</body>
+</html>
